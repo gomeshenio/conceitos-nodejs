@@ -36,7 +36,7 @@ app.put("/repositories/:id", (request, response) => { //ROUTE PARAMS :id
   const repositoryIndex = repositories.findIndex(repository => repository.id === id);
 
   if (repositoryIndex < 0) {
-    return response.status(404).json({ error: 'Repository not found' });
+    return response.status(400).json({ error: 'Repository not found' });
   };
 
   const repository = {
@@ -44,7 +44,7 @@ app.put("/repositories/:id", (request, response) => { //ROUTE PARAMS :id
     title,
     url,
     techs,
-    likes,
+    likes: 0,
     woner,
   };
 
@@ -59,7 +59,7 @@ app.delete("/repositories/:id", (request, response) => { //ROUTE PARAMS :id
   const repositoryIndex = repositories.findIndex(repository => repository.id === id);
 
   if (repositoryIndex < 0) {
-    return response.status(404).json({ error: 'Repository not found' });
+    return response.status(400).json({ error: 'Repository not found' });
   };
 
   repositories.splice(repositoryIndex, 1);
@@ -73,7 +73,7 @@ app.post("/repositories/:id/like", (request, response) => { // REQUEST BODY
   const repository = repositories.find(repository => repository.id === id);
 
   if (!repository) {
-    return reponse.status(400).send();
+    return response.status(400).send();
   }
 
   repository.likes += 1;
