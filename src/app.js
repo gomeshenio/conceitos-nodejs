@@ -11,15 +11,7 @@ app.use(cors());
 const repositories = [];
 
 app.get("/repositories", (request, response) => { //QUERY PARAMS
-  // const { title } = request.query;
-
-  // const results = {title, url, techs, likes, owner} 
-  // ? repositories.filter(repository => repository.title.includes(title)) 
-  // : repositories;
-
-  // return response.json(results);
   return response.json(repositories);
-
 });
 
 app.post("/repositories", (request, response) => { // REQUEST BODY
